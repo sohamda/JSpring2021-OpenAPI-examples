@@ -1,4 +1,4 @@
 Feature: Regression
 
   Scenario: CheckTemplate
-  Given That provider 3 exists
+    Given That provider 2 is there

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.5.0</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+	<groupId>soham.spring</groupId>
+	<artifactId>openapi-client</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>openapi-client</name>
+	<description>Project to illustrate java clients for APIs defined with OpenAPI Specifications</description>
+	<properties>
+		<java.version>11</java.version>
+		<openapi.generator.maven.plugin>5.0.0</openapi.generator.maven.plugin>
+		<swagger.annotations>1.6.1</swagger.annotations>
+		<org.junit>3.8.1</org.junit>
+	</properties>
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>io.swagger</groupId>
+			<artifactId>swagger-annotations</artifactId>
+			<version>${swagger.annotations}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.openapitools</groupId>
+				<artifactId>openapi-generator-maven-plugin</artifactId>
+				<version>${openapi.generator.maven.plugin}</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<inputSpec>${project.basedir}/src/main/resources/apispec/openapi3.yaml</inputSpec>
+							<generatorName>java</generatorName>
+							<addCompileSourceRoot>true</addCompileSourceRoot>
+							<modelPackage>${project.groupId}.openapiclient.model</modelPackage>
+							<packageName>${project.groupId}.openapiclient</packageName>
+							<generateModelDocumentation>false</generateModelDocumentation>
+							<generateModelTests>false</generateModelTests>
+							<generateApiTests>false</generateApiTests>
+							<library>resttemplate</library>
+							<configOptions>
+								<dateLibrary>java8</dateLibrary>
+								<sourceFolder>swagger</sourceFolder>
+								<interfaceOnly>false</interfaceOnly>
+								<java8>true</java8>
+							</configOptions>
+							<output>${project.build.directory}/generated-sources</output>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>

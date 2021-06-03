@@ -23,6 +23,11 @@
 hs_err_pid*
 
 .DS_Store
-./docs/.DS_Store
-./open-api-frontend/package-lock.json
-./regression-test/.mvn/**
+docs/.DS_Store
+open-api-frontend/package-lock.json
+regression-test/.mvn
+regression-test/target
+regression-test/.idea
+openapi-client/target
+openapi-client/.idea
+openapi-client/.mvn
